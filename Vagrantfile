@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     end
 
     # Vagrant plugins config
-    config.cache.scope = :box
+    # config.cache.scope = :box
     config.berkshelf.enabled = true
     config.hostsupdater.remove_on_suspend = true
 
@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
     config.vm.hostname = "www.magento.dev"
 
     # Synced folders
-    config.vm.synced_folder "./", "/var/www/magento_dev", type: "nfs"
+    config.vm.synced_folder "./", "/var/www/magento_dev", :mount_options => ["dmode=777","fmode=666"]
 
     # Provision via chef solo
     config.vm.provision :chef_solo do |chef|
